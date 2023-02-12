@@ -27,8 +27,8 @@ let main args =
     endpoints [
         get "/mul/{a:int}/{b:int}" (executeBasicOpHandler Multiplication)
         get "/add/{a:int}/{b:int}" (executeBasicOpHandler Addition)
-        get "/json"                      (Response.ofJson {| Message="Hello World"; Language="F#" |})
-        get "/"                          defaultPage
+        get "/json"                (Response.ofJson {| Message="Hello World"; Language="F#" |})
+        get "/"                    defaultPage
     ]
   }
   0
