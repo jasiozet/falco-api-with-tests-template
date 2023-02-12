@@ -16,8 +16,8 @@ let indexView =
 let defaultPage = Response.ofHtml indexView
 let executeBasicOpHandler operation : HttpHandler =
   let getResult (route : RouteCollectionReader) =
-    let a = route.GetInt "a" 0
-    let b = route.GetInt "b" 0
+    let a = route.GetInt("a", 0)
+    let b = route.GetInt("b", 0)
     ExecuteBasicOperation operation a b
   Request.mapRoute getResult Response.ofPlainText
 
@@ -27,8 +27,8 @@ let main args =
     endpoints [
         get "/mul/{a:int}/{b:int}" (executeBasicOpHandler Multiplication)
         get "/add/{a:int}/{b:int}" (executeBasicOpHandler Addition)
-        get "/json"                      (Response.ofJson {| Message="Hello World"; Language="F#" |})
-        get "/"                          defaultPage
+        get "/json"                (Response.ofJson {| Message="Hello World"; Language="F#" |})
+        get "/"                    defaultPage
     ]
   }
   0
