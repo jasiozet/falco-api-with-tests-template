@@ -16,8 +16,8 @@ let indexView =
 let defaultPage = Response.ofHtml indexView
 let executeBasicOpHandler operation : HttpHandler =
   let getResult (route : RouteCollectionReader) =
-    let a = route.GetInt "a" 0
-    let b = route.GetInt "b" 0
+    let a = route.GetInt("a", 0)
+    let b = route.GetInt("b", 0)
     ExecuteBasicOperation operation a b
   Request.mapRoute getResult Response.ofPlainText
 
