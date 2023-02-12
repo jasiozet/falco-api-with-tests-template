@@ -6,7 +6,8 @@ Clone the repo!
 
 ## Requirements
 
-[dotNET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+[dotNET 7](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
+(you can downgrade dotnet version to 6.0 easily in the fsproj files)
 
 Editor capable of working with F#, I personally recommend:
 * [Visual Studio Code](https://code.visualstudio.com/) and [Ionide plugin](https://ionide.io/)
@@ -18,6 +19,22 @@ Other options:
 ## Stuff inside API
 
 * [Falco](https://www.falcoframework.com/)
+* [Feliz.ViewEngine](https://github.com/dbrattli/Feliz.ViewEngine)
+
+The reason for using Feliz.ViewEngine is that I heavily use it in frontend application and if I were to write SSR I would prefer to use it for consistency. As this is a template I use myself, this is what I wanted here. Feel free to remove it.
+Similar stuff written in Falco.Markup have looked like this:
+```fsharp
+let indexView =
+  Elem.html [] [
+    Elem.head [] [ Elem.title [] [ Text.raw "Falco Sample" ]]
+    Elem.body [] [
+      Elem.h1 [] [ Text.raw "I |> F#" ]
+      Elem.p [Attr.class' "some-css-class"; Attr.id "someId"] [ Text.raw "Hello World"]
+    ]
+  ]
+
+let defaultPage = Response.ofHtml indexView
+```
 
 Take a look at similar:
 * [Saturn template](https://github.com/jasiozet/saturn-api-with-tests-template)
