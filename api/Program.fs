@@ -1,19 +1,21 @@
 ﻿open Falco
 open Falco.Routing
 open Falco.HostBuilder
-open Falco.Markup
+open Feliz.ViewEngine
 open Logic
 
 let indexView =
-  Elem.html [] [
-    Elem.head [] [ Elem.title [] [ Text.raw "Falco Sample" ]]
-    Elem.body [] [
-      Elem.h1 [] [ Text.raw "I |> F#" ]
-      Elem.p [Attr.class' "some-css-class"; Attr.id "someId"] [ Text.raw "Hello World"]
+  Html.html [
+    Html.head [ Html.title "Falco Sample"]
+    Html.body [
+      Html.h1 "I |> F#"
+      Html.p [
+        prop.style [ style.color color.green]
+        prop.text "Hello world"]
     ]
   ]
 
-let defaultPage = Response.ofHtml indexView
+let defaultPage = indexView |> Render.htmlView |> Response.ofHtmlString
 let executeBasicOpHandler operation : HttpHandler =
   let getResult (route : RouteCollectionReader) =
     let a = route.GetInt("a", 0)
